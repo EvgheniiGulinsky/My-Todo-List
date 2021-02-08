@@ -1,2 +1,2 @@
 # My-Todo-List
-React Todo App
+https://evgheniigulinsky.github.io/My-Todo-List/
