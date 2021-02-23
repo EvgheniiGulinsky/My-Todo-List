@@ -1,32 +1,42 @@
-import React, {Component} from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class TaskFilter extends Component {
-    render() {
-        const {onTaskFilter} = this.props
-        return(
-        <ul className="filters" onClick={(e) => {
-            const filterButtons = [...document.querySelectorAll('.filters li button')]
-            if(filterButtons.includes(e.target)){
-                filterButtons.forEach(el => el.classList.remove('selected'))
-                e.target.classList.add('selected')
-                onTaskFilter(e.target.id)}}
-            }
-        >
-          <li>
-              <button className="selected" id='All'>All</button>
-          </li>
-          <li>
-              <button id="active">Active</button>
-          </li>
-          <li>
-              <button id="completed">Completed</button>
-          </li>
-        </ul>
-        )
+const TaskFilter = ({ onTaskFilter }) => {
+  const handleFilter = (event) => {
+    const filterButtons = [...document.querySelectorAll('.filters li button')];
+    if (filterButtons.includes(event.target)) {
+      filterButtons.forEach((el) => el.classList.remove('selected'));
+      event.target.classList.add('selected');
+      onTaskFilter(event.target.id);
     }
-    static defaultProps = {
-        onTaskFilter: () => {}
-    }
-  }
+  };
+  return (
+    <ul className="filters">
+      <li>
+        <button type="button" className="selected" id="All" onClick={handleFilter}>
+          All
+        </button>
+      </li>
+      <li>
+        <button type="button" id="active" onClick={handleFilter}>
+          Active
+        </button>
+      </li>
+      <li>
+        <button type="button" id="completed" onClick={handleFilter}>
+          Completed
+        </button>
+      </li>
+    </ul>
+  );
+};
 
- 
+TaskFilter.defaultProps = {
+  onTaskFilter: () => {},
+};
+TaskFilter.propTypes = {
+  onTaskFilter: PropTypes.func,
+};
+
+export default TaskFilter;
