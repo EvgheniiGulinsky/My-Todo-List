@@ -26,7 +26,6 @@
       "git add"
     ]
   },
-  "homepage": "https://evgheniigulinsky.github.io/My-Todo-List",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
